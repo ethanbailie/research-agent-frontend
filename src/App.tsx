@@ -1,9 +1,13 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 import GlobalRouter from "./router/router";
 
 const App = () => {
   return (
     <div>
-      <GlobalRouter />
+      <GoogleOAuthProvider clientId="">
+        <GlobalRouter />
+      </GoogleOAuthProvider>
     </div>
   );
 };

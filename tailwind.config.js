@@ -18,7 +18,6 @@ export default {
       space: {
         "5px": "5px",
       },
-    
     },
   },
   plugins: [],
