@@ -31,11 +31,11 @@ const mockResults = [
 ];
 
 interface Results {
-  id: string;
-  company: string;
-  url: string;
+  name: string;
   description: string;
-  marketOpportunity: string;
+  market_focus: string;
+  unique_perspective: string;
+  url: string;
 }
 
 const Results: React.FC = () => {
@@ -45,6 +45,7 @@ const Results: React.FC = () => {
   const [results, setResults] = useState<Results[]>([]);
   const [searchTerm, setSearchTerm] = useState(query || ""); // Sync searchTerm with query
   const [loading, setLoading] = useState<boolean>(true);
+  const [queryResult, setQueryResult] = useState<string>("");
 
   const handleSearchResults = async (query: string) => {
     try {
@@ -53,8 +54,11 @@ const Results: React.FC = () => {
       console.log(data);
 
       const response = await AnswerService.RetrieveAnswer(data);
-      console.log(response.data);
-      setResults(response);
+
+      setResults(response.data.result.competitors);
+      //  console.log(response.data.result.validation.unique);
+      setQueryResult(response.data.result.validation.unique);
+      //  setResults(response);
     } catch (error) {
       console.error("Error retrieving answers:", error);
       setResults(mockResults);
@@ -140,16 +144,7 @@ const Results: React.FC = () => {
           >
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
             <p className="text-gray-600 mb-4">
-              <strong>Summary:</strong> Explore companies innovating across AI,
-              blockchain, and IoT for transformative market solutions.
-            </p>
-            <p className="text-gray-600 mb-4">
-              <strong>Key Insights:</strong> These companies address critical
-              challenges in market analysis, supply chain, and smart cities.
-            </p>
-            <p className="text-gray-600">
-              <strong>Future Potential:</strong> Markets are projected to grow
-              exponentially, unlocking opportunities across industries.
+              <strong>Summary:</strong> {queryResult}
             </p>
           </motion.div>
 
@@ -168,14 +163,13 @@ const Results: React.FC = () => {
                 className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-indigo-500"
               >
                 <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  {result.company}
+                  {result.name}
                 </h2>
                 <p className="text-gray-600 mb-4">
                   <strong>Description:</strong> {result.description}
                 </p>
                 <p className="text-gray-600 mb-4">
-                  <strong>Market Opportunity:</strong>{" "}
-                  {result.marketOpportunity}
+                  <strong>Market Opportunity:</strong> {result.market_focus}
                 </p>
                 <a
                   href={result.url}
