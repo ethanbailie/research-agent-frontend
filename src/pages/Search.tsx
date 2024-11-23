@@ -15,14 +15,14 @@ const Search: React.FC = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r ">
       <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
         <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">
-          🔍 Market <span className="text-blue-500">Lens</span>
+          🔍 Optimize <span className="text-blue-500">AI</span>
         </h1>
         <p className="text-center text-gray-600 mb-8">
-          Discover market trends and innovative ideas instantly.
+          Discover cost savings in your business.
         </p>
         <input
           type="text"
-          placeholder="Enter a company or idea..."
+          placeholder="Enter ideas to automate."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-5 py-3 mb-6 text-lg border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"

@@ -87,7 +87,7 @@ const Results: React.FC = () => {
       className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6"
     >
       <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">
-        🔍 Market <span className="text-blue-500">Lens</span>
+        🔍 Optimize <span className="text-blue-500">AI</span>
       </h1>
 
       {/* Search Bar and Button */}
