@@ -1,10 +1,25 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+export default {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  variants: {
+    extend: {
+      selection: ['responsive'],
+    },
+  },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins, sans-serif"],
+      },
+      gridTemplateColumns: {
+        sidebar: "200px auto", //for sidebar layout
+        "sidebar-collapsed": "64px auto", //for collapsed sidebar layout
+      },
+      space: {
+        "5px": "5px",
+      },
+    
+    },
   },
   plugins: [],
-}
+};
