@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import AnswerService from "../core/services/answer.service";
 const mockResults = [
   {
     company: "Tech Innovators Inc.",
@@ -25,10 +25,34 @@ const mockResults = [
   },
 ];
 
+interface Results {
+  id: string;
+  company: string;
+  url: string;
+  description: string;
+  marketOpportunity: string;
+}
+
 const Results: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search).get("query");
+  const [results, setResult] = useState<Results[]>([]);
+
+  const handleSearchResults = async () => {
+    try {
+      const response = await AnswerService.RetrieveAnswer();
+
+      console.log(response);
+    } catch (error) {
+      console.error("Error retrieving answers:", error);
+      // Handle the error as needed (e.g., show a notification)
+    }
+  };
+
+  useEffect(() => {
+    handleSearchResults();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 p-6">
