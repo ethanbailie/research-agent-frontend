@@ -22,7 +22,7 @@ const Search: React.FC = () => {
         </p>
         <input
           type="text"
-          placeholder="Enter ideas to automate."
+          placeholder="Enter details about your operation."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-5 py-3 mb-6 text-lg border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"

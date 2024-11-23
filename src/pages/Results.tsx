@@ -7,6 +7,7 @@ interface Results {
   name: string;
   description: string;
   unique_perspective: string;
+  cost_savings: string;
 }
 
 const Results: React.FC = () => {
@@ -133,7 +134,8 @@ const Results: React.FC = () => {
                 className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-indigo-500"
               >
                 <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-                  {result.name}
+                  {result.name} - Cost Savings:{" "}
+                  <span className="text-green-400">{result.cost_savings}</span>
                 </h2>
                 <p className="text-gray-600 mb-4">
                   <strong>Description:</strong> {result.description}
