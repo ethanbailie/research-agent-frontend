@@ -3,39 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import AnswerService from "../core/services/answer.service";
 
-const mockResults = [
-  {
-    company: "Tech Innovators Inc.",
-    url: "https://www.techinnovators.com",
-    description:
-      "A forward-thinking company leveraging AI to redefine market analysis.",
-    marketOpportunity:
-      "Growing demand for AI tools in market analysis projected at $10B by 2025.",
-  },
-  {
-    company: "Future Enterprises",
-    url: "https://www.futureenterprises.com",
-    description:
-      "Leading the charge in blockchain-based solutions for supply chain transparency.",
-    marketOpportunity:
-      "Blockchain in supply chain expected to reach $15B by 2027.",
-  },
-  {
-    company: "NextGen Solutions",
-    url: "https://www.nextgensolutions.com",
-    description:
-      "Pioneering smart city infrastructure with IoT-enabled solutions.",
-    marketOpportunity:
-      "Global smart city investment expected to exceed $1.2T by 2030.",
-  },
-];
-
 interface Results {
   name: string;
   description: string;
-  market_focus: string;
   unique_perspective: string;
-  url: string;
 }
 
 const Results: React.FC = () => {
@@ -55,13 +26,12 @@ const Results: React.FC = () => {
 
       const response = await AnswerService.RetrieveAnswer(data);
 
-      setResults(response.data.result.competitors);
+      setResults(response.data.result.opportunities);
       //  console.log(response.data.result.validation.unique);
-      setQueryResult(response.data.result.validation.unique);
+      setQueryResult(response.data.result.validation.automation_validity);
       //  setResults(response);
     } catch (error) {
       console.error("Error retrieving answers:", error);
-      setResults(mockResults);
     } finally {
       setLoading(false);
     }
@@ -168,17 +138,6 @@ const Results: React.FC = () => {
                 <p className="text-gray-600 mb-4">
                   <strong>Description:</strong> {result.description}
                 </p>
-                <p className="text-gray-600 mb-4">
-                  <strong>Market Opportunity:</strong> {result.market_focus}
-                </p>
-                <a
-                  href={result.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-500 underline hover:text-indigo-700"
-                >
-                  Visit Website
-                </a>
               </motion.div>
             ))}
           </motion.div>
