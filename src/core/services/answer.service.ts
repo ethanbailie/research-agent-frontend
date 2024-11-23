@@ -5,7 +5,7 @@ import RequestsService from "./request.service";
 
 export default class AnswerService {
 
-    static async RetrieveAnswer(): Promise<AxiosResponse<any>> {
-        return RequestsService.getMethod<any>(APIRoutes.ANSWER);
+    static async RetrieveAnswer(data: any): Promise<AxiosResponse<any>> {
+        return RequestsService.postMethod<any>(APIRoutes.ANSWER, data);
     } 
 }

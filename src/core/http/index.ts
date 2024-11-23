@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const APIRoutes = {
-ANSWER: "api/answer",
+ANSWER: "research",
 };
 
 const $api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "http://localhost:8000",
 });
 
 $api.interceptors.request.use((config: any) => {

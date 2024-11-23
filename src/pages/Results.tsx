@@ -46,9 +46,14 @@ const Results: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState(query || ""); // Sync searchTerm with query
   const [loading, setLoading] = useState<boolean>(true);
 
-  const handleSearchResults = async () => {
+  const handleSearchResults = async (query: string) => {
     try {
-      const response = await AnswerService.RetrieveAnswer();
+      const data = { query: query };
+
+      console.log(data);
+
+      const response = await AnswerService.RetrieveAnswer(data);
+      console.log(response.data);
       setResults(response);
     } catch (error) {
       console.error("Error retrieving answers:", error);
@@ -62,12 +67,12 @@ const Results: React.FC = () => {
     if (searchTerm.trim()) {
       navigate(`/results?query=${encodeURIComponent(searchTerm)}`);
       setLoading(true); // Reset loading state
-      handleSearchResults(); // Trigger new search
+      handleSearchResults(searchTerm); // Trigger new search
     }
   };
 
   useEffect(() => {
-    handleSearchResults();
+    handleSearchResults(searchTerm);
   }, []);
 
   return (
