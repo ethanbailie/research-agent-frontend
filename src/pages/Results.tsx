@@ -114,7 +114,7 @@ const Results: React.FC = () => {
             className="mb-10 p-6 bg-white rounded-lg shadow-md border-t-4 border-green-400"
           >
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-4 text-2xl">
               <strong>Summary:</strong> {queryResult}
             </p>
           </motion.div>
