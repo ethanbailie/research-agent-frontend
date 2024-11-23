@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const APIRoutes = {
-RESEARCH: "api/research",
+ANSWER: "api/answer",
 };
 
 const $api = axios.create({
