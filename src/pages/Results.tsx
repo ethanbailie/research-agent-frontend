@@ -43,6 +43,7 @@ const Results: React.FC = () => {
   const navigate = useNavigate();
   const query = new URLSearchParams(location.search).get("query");
   const [results, setResults] = useState<Results[]>([]);
+  const [searchTerm, setSearchTerm] = useState(query || ""); // Sync searchTerm with query
   const [loading, setLoading] = useState<boolean>(true);
 
   const handleSearchResults = async () => {
@@ -54,6 +55,14 @@ const Results: React.FC = () => {
       setResults(mockResults);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/results?query=${encodeURIComponent(searchTerm)}`);
+      setLoading(true); // Reset loading state
+      handleSearchResults(); // Trigger new search
     }
   };
 
@@ -72,21 +81,22 @@ const Results: React.FC = () => {
         🔍 Market <span className="text-blue-500">Lens</span>
       </h1>
 
-      <button
-        onClick={() => navigate("/")}
-        className="px-6 py-2 mb-6 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-shadow shadow-md"
-      >
-        ← Back
-      </button>
-
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl font-extrabold text-gray-800 mb-6"
-      >
-        Results for: <span className="text-blue-500">{query}</span>
-      </motion.h1>
+      {/* Search Bar and Button */}
+      <div className="mb-6 max-w-lg mx-auto flex flex-col sm:flex-row items-center gap-4">
+        <input
+          type="text"
+          placeholder="Enter a company or idea..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="flex-1 px-5 py-3 text-lg border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
+        />
+        <button
+          onClick={handleSearch}
+          className="px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
+        >
+          Search
+        </button>
+      </div>
 
       {loading ? (
         <motion.div
@@ -99,6 +109,15 @@ const Results: React.FC = () => {
         </motion.div>
       ) : (
         <>
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl font-extrabold text-gray-800 mb-6"
+          >
+            Results for: <span className="text-blue-500">{query}</span>
+          </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
