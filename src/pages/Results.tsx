@@ -82,17 +82,17 @@ const Results: React.FC = () => {
       </h1>
 
       {/* Search Bar and Button */}
-      <div className="mb-6 max-w-lg mx-auto flex flex-col sm:flex-row items-center gap-4">
+      <div className="mb-6 mx-auto flex flex-col sm:flex-row items-center gap-4 px-4 max-w-full sm:max-w-lg">
         <input
           type="text"
           placeholder="Enter a company or idea..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-5 py-3 text-lg border rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300"
+          className="w-full sm:flex-1 px-4 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button
           onClick={handleSearch}
-          className="px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-transform transform hover:scale-105"
+          className="w-full sm:w-auto px-5 py-2 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-transform transform hover:scale-105"
         >
           Search
         </button>
