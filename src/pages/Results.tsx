@@ -66,11 +66,15 @@ const Results: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen bg-gradient-to-br from-indigo-50 to-indigo-100 p-6"
+      className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6"
     >
+      <h1 className="text-4xl font-extrabold text-center text-gray-900 mb-6">
+        🔍 Market <span className="text-blue-500">Lens</span>
+      </h1>
+
       <button
         onClick={() => navigate("/")}
-        className="px-6 py-2 mb-6 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-shadow shadow-md"
+        className="px-6 py-2 mb-6 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-shadow shadow-md"
       >
         ← Back
       </button>
@@ -81,7 +85,7 @@ const Results: React.FC = () => {
         transition={{ duration: 0.8 }}
         className="text-4xl font-extrabold text-gray-800 mb-6"
       >
-        Results for: <span className="text-indigo-500">{query}</span>
+        Results for: <span className="text-blue-500">{query}</span>
       </motion.h1>
 
       {loading ? (
